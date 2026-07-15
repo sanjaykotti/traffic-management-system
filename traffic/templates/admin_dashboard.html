@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Traffic Management</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: white;
+            height: 100vh;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+        }
+
+        .header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            background: rgba(10, 10, 30, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #4ecca3;
+        }
+
+        .dashboard-container {
+            text-align: center;
+            padding-top: 6rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            background: linear-gradient(45deg, #4ecca3, #4a47a3);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 2rem;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 4rem;
+        }
+
+        .card {
+            width: 300px;
+            padding: 2rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #4ecca3;
+        }
+
+        .cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin-top: 2rem;
+            color: white;
+            background: linear-gradient(45deg, #4ecca3, #4a47a3);
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(78, 204, 163, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav a {
+                margin: 0.5rem;
+            }
+
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="logo">Admin Dashboard</div>
+        <nav class="nav">
+            <a href="#signals">🚥 Manage Signals</a>
+            <a href="#vehicles">🚗 Manage Vehicles</a>
+            <a href="#violations">🚨 Traffic Violations</a>
+            <a href="#users">👤 User Management</a>
+            <a href="/logout">🔓 Logout</a>
+        </nav>
+    </div>
+
+    <div class="dashboard-container">
+        <h1>Traffic Management - Admin Dashboard</h1>
+
+        <div class="cards-container">
+            <div class="card" id="signals">
+                <div class="card-icon">🚦</div>
+                <h2>Manage Signals</h2>
+                <p>View and control traffic signals.</p>
+                <a href="manage_signals" class="cta">Access</a>
+            </div>
+
+            <div class="card" id="vehicles">
+                <div class="card-icon">🚗</div>
+                <h2>Manage Vehicles</h2>
+                <p>Track and update vehicle logs.</p>
+                <a href="manage_vehicles" class="cta">Access</a>
+            </div>
+
+            <div class="card" id="violations">
+                <div class="card-icon">🚨</div>
+                <h2>Traffic Violations</h2>
+                <p>Monitor and log traffic violations.</p>
+                <a href="traffic_violations" class="cta">Access</a>
+            </div>
+
+            <div class="card" id="users">
+                <div class="card-icon">👤</div>
+                <h2>User Management</h2>
+                <p>Manage users and access levels.</p>
+                <a href="user_management" class="cta">Access</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

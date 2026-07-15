@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Management System</title>
+    <style>
+        /* Global Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100vh;
+            overflow-y: auto;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: white;
+            scroll-behavior: smooth;
+        }
+
+        /* Header Section */
+        .header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 3rem;
+            z-index: 10;
+            background: rgba(10, 10, 30, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .signal-light {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+            animation: changeLight 3s infinite;
+        }
+
+        @keyframes changeLight {
+            0% { background: red; }
+            33% { background: yellow; }
+            66% { background: green; }
+            100% { background: red; }
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #4ecca3;
+        }
+
+        /* Hero Section */
+        .container {
+            text-align: center;
+            padding-top: 6rem;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #4ecca3, #4a47a3);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Slogan */
+        .slogan {
+            font-style: italic;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+        }
+
+        /* CTA Buttons */
+        .cta {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 0 1rem;
+            color: white;
+            background: linear-gradient(45deg, #4ecca3, #4a47a3);
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(78, 204, 163, 0.5);
+        }
+
+        /* Feature Cards */
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 4rem;
+        }
+
+        .card {
+            width: 300px;
+            padding: 2rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #4ecca3;
+        }
+
+        /* Login Form */
+        .login-container {
+            max-width: 400px;
+            margin: 4rem auto;
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+        }
+
+        .login-container h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 0.8rem;
+            margin-top: 1rem;
+            background: linear-gradient(45deg, #4ecca3, #4a47a3);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            p {
+                font-size: 1.2rem;
+            }
+
+            .cta {
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .cards-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav a {
+                margin: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header with Animated Signal Light -->
+    <div class="header">
+        <div class="logo">
+            <div class="signal-light"></div>
+            Traffic Management
+        </div>
+        <nav class="nav">
+            <a href="#home">🏠 Home</a>
+            <a href="#signals">🚥 Signals</a>
+            <a href="#logs">📋 Logs</a>
+            <a href="#violations">🚨 Violations</a>
+            <a href="/login">🔐 Login</a>
+        </nav>
+    </div>
+
+
+    <!-- Hero Section -->
+    <div class="container" id="home">
+        <h1>Smart Traffic Management System</h1>
+        <p>Manage Signals, Logs, and Violations in Real-Time.</p>
+        <p class="slogan">"Keeping Roads Safer, One Signal at a Time!"</p>
+
+        <!-- CTA Buttons -->
+        <a href="#signals" class="cta">🚦 View Signals</a>
+        <a href="#violations" class="cta">🚨 View Violations</a>
+
+        <!-- Feature Cards -->
+        <div class="cards-container" id="signals">
+            <div class="card">
+                <div class="card-icon">🚥</div>
+                <h2>Traffic Signals</h2>
+                <p>Monitor and manage traffic lights in real-time.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h2>Data Insights</h2>
+                <p>Analyze traffic patterns for smarter planning.</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">🚗</div>
+                <h2>Violation Logs</h2>
+                <p>Track and log traffic violations efficiently.</p>
+            </div>
+        </div>
+
+        
+    </div>
+
+</body>
+
+</html>

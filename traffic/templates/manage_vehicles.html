@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Vehicles</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a2e;
+            color: white;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .header {
+            background: #16213e;
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(10, 10, 30, 0.9);
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        input, select, button {
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button {
+            background: linear-gradient(45deg, #4ecca3, #4a47a3);
+            color: white;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid white;
+        }
+
+        .success {
+            color: #4ecca3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Traffic Management System</h1>
+        <nav>
+            <a href="/admin_dashboard">Dashboard</a>
+            <a href="/manage_signals">Manage Signals</a>
+            <a href="/manage_vehicles">Manage Vehicles</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </div>
+
+    <div class="container">
+        <h2>Manage Vehicles</h2>
+
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <p class="success">{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+
+        <!-- Add Vehicle Form -->
+        <form method="POST" action="/manage_vehicles">
+            <input type="hidden" name="action" value="add">
+            <input type="text" name="vehicle_number" placeholder="Vehicle Number" required>
+            <input type="text" name="vehicle_type" placeholder="Vehicle Type" required>
+            <input type="text" name="owner_name" placeholder="Owner Name" required>
+            <button type="submit">Add Vehicle</button>
+        </form>
+
+        <!-- Vehicle List -->
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Vehicle Number</th>
+                    <th>Vehicle Type</th>
+                    <th>Owner Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vehicle in vehicles %}
+                <tr>
+                    <td>{{ vehicle[0] }}</td>
+                    <td>{{ vehicle[1] }}</td>
+                    <td>{{ vehicle[2] }}</td>
+                    <td>{{ vehicle[3] }}</td>
+                    <td>
+                        <!-- Update Form -->
+                        <form method="POST" action="/manage_vehicles" style="display: inline;">
+                            <input type="hidden" name="action" value="update">
+                            <input type="hidden" name="id" value="{{ vehicle[0] }}">
+                            <input type="text" name="vehicle_type" value="{{ vehicle[2] }}" required>
+                            <input type="text" name="owner_name" value="{{ vehicle[3] }}" required>
+                            <button type="submit">Update</button>
+                        </form>
+
+                        <!-- Delete Form -->
+                        <form method="POST" action="/manage_vehicles" style="display: inline;">
+                            <input type="hidden" name="action" value="delete">
+                            <input type="hidden" name="id" value="{{ vehicle[0] }}">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>
